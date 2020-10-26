@@ -55,7 +55,7 @@ public class Ticket implements Lucky, ITicket {
 
         for(int i = 0; i <= middle_number_ticket; i++) {
             left_summ += number[i];
-            right_summ += number[1+middle_number_ticket+i];
+            right_summ += number[middle_number_ticket+i];
         }
 
         return (left_summ == right_summ) ? true: false;
@@ -97,7 +97,7 @@ public class Ticket implements Lucky, ITicket {
 
         for(int i = 0; i < number.length ; i++) {
             int multiplication = number.length - 1 - i;
-            result += multiplication*number[i];
+            result += Math.pow(10, multiplication)*number[i];
         }
 
         return result;
