@@ -4,23 +4,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 public interface ILuckyController {
-    @GetMapping("lucky/")
+    @GetMapping(value="lucky/")
     @ResponseBody
     String getLuckyList(int count_numbers);
 
-    @GetMapping("even_lucky/")
+    @GetMapping(value="even_lucky/", consumes = "application/json", produces = "application/json")
     @ResponseBody
     String getEvenLuckyList(int count_numbers);
 
-    @GetMapping("third_lucky/")
+    @GetMapping(value="third_lucky/", consumes = "application/json", produces = "application/json")
     @ResponseBody
     String getThirdLuckyList(int count_numbers);
 
-    @GetMapping("five_lucky/")
+    @GetMapping(value="five_lucky/", consumes = "application/json", produces = "application/json")
     @ResponseBody
     String getFiveLuckyList(int count_numbers);
 
-    @GetMapping("seven_lucky/")
+    @GetMapping(value="seven_lucky/", consumes = "application/json", produces = "application/json")
     @ResponseBody
     String getSevenLuckyList(int count_numbers);
 }
