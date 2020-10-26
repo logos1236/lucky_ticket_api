@@ -2,7 +2,7 @@ package ru.armishev.lucky_ticket_api.builders;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import ru.armishev.lucky_ticket_api.Ticket;
+import ru.armishev.lucky_ticket_api.ticket.Ticket;
 
 @Service("TicketBuilder")
 @Scope("prototype")

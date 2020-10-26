@@ -2,6 +2,7 @@ package ru.armishev.lucky_ticket_api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
 import java.util.function.Predicate;
 

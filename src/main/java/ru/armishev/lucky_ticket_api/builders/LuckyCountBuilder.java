@@ -1,13 +1,10 @@
 package ru.armishev.lucky_ticket_api.builders;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import ru.armishev.lucky_ticket_api.AppLuckyCount;
-import ru.armishev.lucky_ticket_api.Lucky;
+import ru.armishev.lucky_ticket_api.ticket.Lucky;
 import ru.armishev.lucky_ticket_api.generator.CustomizableTicketsGenerator;
 
-import java.util.Iterator;
 import java.util.function.Predicate;
 
 public class LuckyCountBuilder implements ILuckyCountBuilder {

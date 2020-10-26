@@ -1,8 +1,8 @@
-package ru.armishev.lucky_ticket_api;
+package ru.armishev.lucky_ticket_api.ticket;
 
 import java.util.Arrays;
 
-public class Ticket implements Lucky {
+public class Ticket implements Lucky, ITicket {
     private int[] number;
 
     public Ticket(int[] number) {
@@ -89,5 +89,17 @@ public class Ticket implements Lucky {
     @Override
     public int hashCode() {
         return Arrays.hashCode(number);
+    }
+
+    @Override
+    public long getNumber() {
+        long result = 0;
+
+        for(int i = 0; i < number.length ; i++) {
+            int multiplication = number.length - 1 - i;
+            result += multiplication*number[i];
+        }
+
+        return result;
     }
 }

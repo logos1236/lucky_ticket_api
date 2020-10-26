@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import ru.armishev.lucky_ticket_api.builders.TicketBuilder;
-import ru.armishev.lucky_ticket_api.Lucky;
+import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
 import java.util.Iterator;
 

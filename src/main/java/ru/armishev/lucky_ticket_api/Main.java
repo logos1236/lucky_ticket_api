@@ -1,12 +1,8 @@
 package ru.armishev.lucky_ticket_api;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 

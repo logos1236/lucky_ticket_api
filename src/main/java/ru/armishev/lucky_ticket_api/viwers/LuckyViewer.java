@@ -1,7 +1,7 @@
 package ru.armishev.lucky_ticket_api.viwers;
 
-import ru.armishev.lucky_ticket_api.Lucky;
-import ru.armishev.lucky_ticket_api.Ticket;
+import ru.armishev.lucky_ticket_api.ticket.Lucky;
+import ru.armishev.lucky_ticket_api.ticket.Ticket;
 
 import java.util.List;
 
