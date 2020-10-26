@@ -11,11 +11,11 @@ import java.util.function.Predicate;
 public class AppConfig {
     @Bean("CountDigitsInTicket")
     public static Integer getCountDigitsInTicket() {
-        return 5;
+        return 6;
     }
 
     @Bean("LuckyMethod")
     public static Predicate<Lucky> getLuckyMethod() {
-        return Filter.getFilter(Filter.LUCKY);
+        return Filter.getFilter(Filter.FIVE_LUCKY);
     }
 }

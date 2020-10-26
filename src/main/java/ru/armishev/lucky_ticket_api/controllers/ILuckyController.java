@@ -8,19 +8,19 @@ public interface ILuckyController {
     @ResponseBody
     String getLuckyList(int count_numbers);
 
-    @GetMapping(value="even_lucky/", consumes = "application/json", produces = "application/json")
+    @GetMapping(value="even_lucky/")
     @ResponseBody
     String getEvenLuckyList(int count_numbers);
 
-    @GetMapping(value="third_lucky/", consumes = "application/json", produces = "application/json")
+    @GetMapping(value="third_lucky/")
     @ResponseBody
     String getThirdLuckyList(int count_numbers);
 
-    @GetMapping(value="five_lucky/", consumes = "application/json", produces = "application/json")
+    @GetMapping(value="five_lucky/")
     @ResponseBody
     String getFiveLuckyList(int count_numbers);
 
-    @GetMapping(value="seven_lucky/", consumes = "application/json", produces = "application/json")
+    @GetMapping(value="seven_lucky/")
     @ResponseBody
     String getSevenLuckyList(int count_numbers);
 }
