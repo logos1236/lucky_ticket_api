@@ -7,7 +7,6 @@ import ru.armishev.lucky_ticket_api.generator.ICustomizableTicketsGenerator;
 import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -27,7 +26,7 @@ public class AppLuckyCount implements Supplier<List<Lucky>> {
     }
 
     public void setCount(int count) {
-        this.generator.setCount_numbers(count);
+        this.generator.setCountNumbers(count);
     }
 
     @Override

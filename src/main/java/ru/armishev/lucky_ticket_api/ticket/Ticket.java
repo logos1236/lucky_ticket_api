@@ -3,39 +3,39 @@ package ru.armishev.lucky_ticket_api.ticket;
 import java.util.Arrays;
 
 public class Ticket implements Lucky, ITicket {
-    private int[] number;
+    private final int[] number;
 
     public Ticket(int[] number) {
         this.number = number;
     }
 
-    public Ticket(long number, int count_numbers) {
+    public Ticket(long number, int countNumbers) {
         if (number < 0) {
             throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
         }
 
-        if (count_numbers < 2) {
+        if (countNumbers < 2) {
             throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
         }
 
-        this.number = getSupplementedTicketNumber(number, count_numbers);
+        this.number = getSupplementedTicketNumber(number, countNumbers);
     }
 
-    public static int[] getSupplementedTicketNumber(long number, int count_numbers) {
+    public static int[] getSupplementedTicketNumber(long number, int countNumbers) {
         if (number < 0) {
             throw new IllegalArgumentException("Передано отрицательное число в качестве номера");
         }
 
-        if (count_numbers < 2) {
+        if (countNumbers < 2) {
             throw new IllegalArgumentException("Передано неправильное число в качестве количества цифр в билете");
         }
 
-        char[] number_arr = String.valueOf(number).toCharArray();
-        int[] result = new int[count_numbers];
-        int fill_start_index = count_numbers - number_arr.length;
+        char[] numberArr = String.valueOf(number).toCharArray();
+        int[] result = new int[countNumbers];
+        int fillStartIndex = countNumbers - numberArr.length;
 
-        for (int i = 0; i < number_arr.length; i++) {
-            result[fill_start_index+i] = Character.getNumericValue(number_arr[i]);
+        for (int i = 0; i < numberArr.length; i++) {
+            result[fillStartIndex+i] = Character.getNumericValue(numberArr[i]);
         }
 
         return result;
@@ -55,47 +55,45 @@ public class Ticket implements Lucky, ITicket {
     }
 
     private boolean checkIsLuckyForEven() {
-        int right_summ = 0;
-        int left_summ = 0;
-        int middle_number_ticket = 0;
-        boolean result = false;
+        int rightSum = 0;
+        int leftSum = 0;
+        int middleNumberTicket = 0;
 
-        middle_number_ticket = number.length/2;
+        middleNumberTicket = number.length/2;
 
-        for(int i = 0; i < middle_number_ticket; i++) {
-            left_summ += number[i];
-            right_summ += number[middle_number_ticket+i];
+        for(int i = 0; i < middleNumberTicket; i++) {
+            leftSum += number[i];
+            rightSum += number[middleNumberTicket+i];
         }
 
-        return (left_summ == right_summ) ? true: false;
+        return leftSum == rightSum;
     }
 
     private boolean checkIsLuckyForNotEven() {
-        int right_summ = 0;
-        int left_summ = 0;
-        int middle_number_ticket = 0;
-        boolean result = false;
+        int rightSum = 0;
+        int leftSum = 0;
+        int middleNumberTicket = 0;
 
-        middle_number_ticket = (number.length-1)/2;
+        middleNumberTicket = (number.length-1)/2;
 
-        for(int i = 0; i < middle_number_ticket; i++) {
-            left_summ += number[i];
-            right_summ += number[middle_number_ticket+1+i];
+        for(int i = 0; i < middleNumberTicket; i++) {
+            leftSum += number[i];
+            rightSum += number[middleNumberTicket+1+i];
         }
 
-        return (left_summ == right_summ) ? true: false;
+        return leftSum == rightSum;
     }
 
     @Override
     public boolean isEvenLucky() {
-        return this.isLucky() && (this.number[this.number.length-1]%2==0) ? true : false;
+        return this.isLucky() && (this.number[this.number.length - 1] % 2 == 0);
     }
 
     @Override
     public boolean isThirdLucky() {
-        int summ_digits_in_number = Arrays.stream(this.number).sum();
+        int sumDigitsInNumber = Arrays.stream(this.number).sum();
 
-        return this.isLucky() && (summ_digits_in_number%3==0) ? true : false;
+        return this.isLucky() && (sumDigitsInNumber % 3 == 0);
     }
 
     @Override

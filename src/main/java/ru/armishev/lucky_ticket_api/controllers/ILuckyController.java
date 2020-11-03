@@ -6,21 +6,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public interface ILuckyController {
     @GetMapping(value="lucky/")
     @ResponseBody
-    String getLuckyList(int count_numbers);
+    String getLuckyList(int countNumbers);
 
     @GetMapping(value="even_lucky/")
     @ResponseBody
-    String getEvenLuckyList(int count_numbers);
+    String getEvenLuckyList(int countNumbers);
 
     @GetMapping(value="third_lucky/")
     @ResponseBody
-    String getThirdLuckyList(int count_numbers);
+    String getThirdLuckyList(int countNumbers);
 
     @GetMapping(value="five_lucky/")
     @ResponseBody
-    String getFiveLuckyList(int count_numbers);
+    String getFiveLuckyList(int countNumbers);
 
     @GetMapping(value="seven_lucky/")
     @ResponseBody
-    String getSevenLuckyList(int count_numbers);
+    String getSevenLuckyList(int countNumbers);
 }

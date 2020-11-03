@@ -7,25 +7,27 @@ import org.springframework.stereotype.Service;
 import ru.armishev.lucky_ticket_api.builders.TicketBuilder;
 import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
+import java.util.NoSuchElementException;
+
 @Service("Generator")
 public class CustomizableTicketsGenerator implements ICustomizableTicketsGenerator {
-    private int MAX_COUNT;
-    private int count_numbers;
+    private int maxCount;
+    private int countNumbers;
     private int current = 0;
 
     @Autowired
-    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int count_digits) throws IllegalArgumentException {
-        if (count_digits < 2) {
+    public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int countDigits) {
+        if (countDigits < 2) {
             throw new IllegalArgumentException("Нужны минимум 2 цифры");
         }
 
-        this.count_numbers = count_digits;
-        this.MAX_COUNT = (int)Math.pow(10,count_digits);
+        this.countNumbers = countDigits;
+        this.maxCount = (int)Math.pow(10,countDigits);
     }
 
-    public void setCount_numbers(int count_numbers) {
-        this.count_numbers = count_numbers;
-        this.MAX_COUNT = (int)Math.pow(10,count_numbers);
+    public void setCountNumbers(int countNumbers) {
+        this.countNumbers = countNumbers;
+        this.maxCount = (int)Math.pow(10, countNumbers);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class CustomizableTicketsGenerator implements ICustomizableTicketsGenerat
 
     @Override
     public boolean hasNext() {
-        return (current < MAX_COUNT);
+        return (current < maxCount);
     }
 
     @Lookup
@@ -43,7 +45,11 @@ public class CustomizableTicketsGenerator implements ICustomizableTicketsGenerat
 
     @Override
     public Lucky next() {
-        Lucky result = createTicketBuilder().setTicketInfo(current, count_numbers).build();
+        if (!hasNext()) {
+            throw new NoSuchElementException("Выход за границы итеротора");
+        }
+
+        Lucky result = createTicketBuilder().setTicketInfo(current, countNumbers).build();
         current++;
 
         return result;

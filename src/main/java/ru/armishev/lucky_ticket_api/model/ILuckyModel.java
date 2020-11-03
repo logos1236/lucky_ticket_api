@@ -6,5 +6,5 @@ import ru.armishev.lucky_ticket_api.ticket.Lucky;
 import java.util.List;
 
 public interface ILuckyModel {
-    List<Lucky> getList(int count_numbers, Filter filter_name);
+    List<Lucky> getList(int countNumbers, Filter filterName);
 }

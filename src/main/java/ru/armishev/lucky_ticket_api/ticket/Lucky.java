@@ -1,9 +1,9 @@
 package ru.armishev.lucky_ticket_api.ticket;
 
 public interface Lucky {
-    public boolean isLucky();
+    boolean isLucky();
 
-    public boolean isEvenLucky();
+    boolean isEvenLucky();
 
-    public boolean isThirdLucky();
+    boolean isThirdLucky();
 }

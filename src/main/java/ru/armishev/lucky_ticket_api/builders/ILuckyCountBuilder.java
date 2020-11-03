@@ -6,8 +6,8 @@ import ru.armishev.lucky_ticket_api.ticket.Lucky;
 import java.util.function.Predicate;
 
 public interface ILuckyCountBuilder {
-    public AppLuckyCount build();
+    AppLuckyCount build();
 
-    public ILuckyCountBuilder buildIterator(int count_numbers);
-    public ILuckyCountBuilder buildMethod(Predicate<Lucky> method);
+    ILuckyCountBuilder buildIterator(int countNumbers);
+    ILuckyCountBuilder buildMethod(Predicate<Lucky> method);
 }
