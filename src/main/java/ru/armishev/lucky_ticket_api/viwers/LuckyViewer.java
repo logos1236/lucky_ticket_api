@@ -15,16 +15,16 @@ public class LuckyViewer {
         this.list = list;
     }
 
-    private static List<Long> buildListNumbers(List<Lucky> list) {
-        List<Long> list_numbers = list.stream().map(lucky -> {
+    private static List<String> buildListNumbers(List<Lucky> list) {
+        List<String> list_numbers = list.stream().map(lucky -> {
             Ticket tnm_ticket = (Ticket)lucky;
-            return tnm_ticket.getNumber();
+            return tnm_ticket.toString();
         }).collect(Collectors.toList());
 
         return list_numbers;
     }
 
-    private static String buildJson(List<Long> list) {
+    private static String buildJson(List<String> list) {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
         try {
@@ -37,7 +37,7 @@ public class LuckyViewer {
     }
 
     public String printLuckyListJson() {
-        List<Long> numbers_list = buildListNumbers(this.list);
+        List<String> numbers_list = buildListNumbers(this.list);
         String json = buildJson(numbers_list);
 
         return json;

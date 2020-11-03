@@ -1,21 +1,23 @@
 package ru.armishev.lucky_ticket_api.builders;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 import ru.armishev.lucky_ticket_api.AppLuckyCount;
 import ru.armishev.lucky_ticket_api.ticket.Lucky;
 import ru.armishev.lucky_ticket_api.generator.CustomizableTicketsGenerator;
 
 import java.util.function.Predicate;
 
+@Service("LuckyCountBuilder")
 public class LuckyCountBuilder implements ILuckyCountBuilder {
-    private CustomizableTicketsGenerator iterator;
+    @Autowired
+    AppLuckyCount appLuckyCount;
+
     private Predicate<Lucky> method;
-    private ApplicationContext context;
 
     @Override
     public AppLuckyCount build() {
-        AppLuckyCount appLuckyCount = new AppLuckyCount();
-        appLuckyCount.setIterator(iterator);
         appLuckyCount.setMethod(method);
 
         return appLuckyCount;
@@ -23,7 +25,7 @@ public class LuckyCountBuilder implements ILuckyCountBuilder {
 
     @Override
     public ILuckyCountBuilder buildIterator(int count_numbers) {
-        this.iterator = new CustomizableTicketsGenerator(count_numbers);
+        appLuckyCount.setCount(count_numbers);
 
         return this;
     }

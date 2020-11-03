@@ -1,10 +1,11 @@
 package ru.armishev.lucky_ticket_api.builders;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.armishev.lucky_ticket_api.ticket.Ticket;
 
-@Service("TicketBuilder")
+@Component
 @Scope("prototype")
 public class TicketBuilder implements ITicketBuilder {
     private int[] ticket_number;

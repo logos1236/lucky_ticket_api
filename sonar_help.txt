@@ -1,0 +1,4 @@
+mvn sonar:sonar \
+  -Dsonar.projectKey=ru.armishev:lucky_ticket_api \
+  -Dsonar.host.url=http://127.0.0.1:9000 \
+  -Dsonar.login=985d6f3be8bbe3100195359ac28df3db647de22b

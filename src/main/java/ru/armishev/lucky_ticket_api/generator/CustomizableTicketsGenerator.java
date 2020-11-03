@@ -1,23 +1,17 @@
 package ru.armishev.lucky_ticket_api.generator;
 
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 import ru.armishev.lucky_ticket_api.builders.TicketBuilder;
 import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
-import java.util.Iterator;
-
 @Service("Generator")
-public class CustomizableTicketsGenerator implements Iterator<Lucky>, ApplicationContextAware {
+public class CustomizableTicketsGenerator implements ICustomizableTicketsGenerator {
     private int MAX_COUNT;
     private int count_numbers;
     private int current = 0;
-
-    private ApplicationContext context;
 
     @Autowired
     public CustomizableTicketsGenerator(@Qualifier("CountDigitsInTicket")int count_digits) throws IllegalArgumentException {
@@ -29,25 +23,29 @@ public class CustomizableTicketsGenerator implements Iterator<Lucky>, Applicatio
         this.MAX_COUNT = (int)Math.pow(10,count_digits);
     }
 
+    public void setCount_numbers(int count_numbers) {
+        this.count_numbers = count_numbers;
+        this.MAX_COUNT = (int)Math.pow(10,count_numbers);
+    }
 
+    @Override
+    public void drop() {
+        current = 0;
+    }
 
     @Override
     public boolean hasNext() {
         return (current < MAX_COUNT);
     }
 
+    @Lookup
+    public TicketBuilder createTicketBuilder() {return null;}
+
     @Override
     public Lucky next() {
-        //Lucky result = new Ticket(current, count_numbers);
-        //Lucky result = context.getBean("TicketBuilder", TicketBuilder.class).setTicketInfo(current, count_numbers).build();
-        Lucky result = new TicketBuilder().setTicketInfo(current, count_numbers).build();
+        Lucky result = createTicketBuilder().setTicketInfo(current, count_numbers).build();
         current++;
 
         return result;
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
     }
 }

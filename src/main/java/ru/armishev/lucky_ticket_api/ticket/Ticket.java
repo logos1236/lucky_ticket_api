@@ -43,19 +43,44 @@ public class Ticket implements Lucky, ITicket {
 
     @Override
     public boolean isLucky() {
+        boolean result = false;
+
+        if (number.length%2==0) {
+            result = checkIsLuckyForEven();
+        } else {
+            result = checkIsLuckyForNotEven();
+        }
+
+        return result;
+    }
+
+    private boolean checkIsLuckyForEven() {
         int right_summ = 0;
         int left_summ = 0;
         int middle_number_ticket = 0;
+        boolean result = false;
 
-        if (number.length%2==0) {
-            middle_number_ticket = (int)Math.ceil(number.length/2)-1;
-        } else {
-            middle_number_ticket = (int)Math.ceil(number.length/2);
-        }
+        middle_number_ticket = number.length/2;
 
-        for(int i = 0; i <= middle_number_ticket; i++) {
+        for(int i = 0; i < middle_number_ticket; i++) {
             left_summ += number[i];
             right_summ += number[middle_number_ticket+i];
+        }
+
+        return (left_summ == right_summ) ? true: false;
+    }
+
+    private boolean checkIsLuckyForNotEven() {
+        int right_summ = 0;
+        int left_summ = 0;
+        int middle_number_ticket = 0;
+        boolean result = false;
+
+        middle_number_ticket = (number.length-1)/2;
+
+        for(int i = 0; i < middle_number_ticket; i++) {
+            left_summ += number[i];
+            right_summ += number[middle_number_ticket+1+i];
         }
 
         return (left_summ == right_summ) ? true: false;

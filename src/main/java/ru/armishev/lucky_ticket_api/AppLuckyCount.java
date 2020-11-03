@@ -3,6 +3,7 @@ package ru.armishev.lucky_ticket_api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import ru.armishev.lucky_ticket_api.generator.ICustomizableTicketsGenerator;
 import ru.armishev.lucky_ticket_api.ticket.Lucky;
 
 import java.util.ArrayList;
@@ -15,26 +16,27 @@ import java.util.function.Supplier;
 public class AppLuckyCount implements Supplier<List<Lucky>> {
     @Autowired
     @Qualifier("Generator")
-    Iterator<Lucky> iterator;
+    ICustomizableTicketsGenerator generator;
 
     @Autowired
     @Qualifier("LuckyMethod")
     Predicate<Lucky> method;
 
-    public void setIterator(Iterator<Lucky> iterator) {
-        this.iterator = iterator;
-    }
-
     public void setMethod(Predicate<Lucky> method) {
         this.method = method;
+    }
+
+    public void setCount(int count) {
+        this.generator.setCount_numbers(count);
     }
 
     @Override
     public List<Lucky> get() {
         List<Lucky> list = new ArrayList<>();
+        generator.drop();
 
-        while (iterator.hasNext()) {
-            Lucky t = iterator.next();
+        while (generator.hasNext()) {
+            Lucky t = generator.next();
             if (method.test(t)) {
                 list.add(t);
             }
